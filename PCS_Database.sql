@@ -22,7 +22,7 @@ create table Employee( EmployeeId int identity (1,1)	primary key,
 	KeySkill char(30),
     Salary numeric,
     Active  VARCHAR(10) NOT NULL CHECK (Active IN ('Active', 'InActive')));
-
+ 
 	Create table EmpSkill( ESId	int identity(1,1)	primary key,
 	EmployeeId int,
 	 SkillId int,
