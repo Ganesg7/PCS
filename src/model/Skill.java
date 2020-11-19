@@ -10,12 +10,10 @@ public class Skill {
 		
 	}
 
-	public Skill(int skillId, String skillName, String skillDescription, String active) {
+	public Skill(String skillName, String skillDescription) {
 		super();
-		SkillId = skillId;
 		SkillName = skillName;
 		SkillDescription = skillDescription;
-		Active = active;
 	}
 
 	public int getSkillId() {
@@ -52,8 +50,8 @@ public class Skill {
 
 	@Override
 	public String toString() {
-		return "Skill [SkillId=" + SkillId + ", SkillName=" + SkillName + ", SkillDescription=" + SkillDescription
-				+ ", Active=" + Active + "]";
+		return "Skill [SkillName=" + SkillName + ", SkillDescription=" + SkillDescription + "]";
 	}
 
+	
 }

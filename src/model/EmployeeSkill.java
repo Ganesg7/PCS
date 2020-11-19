@@ -8,9 +8,8 @@ public class EmployeeSkill {
 public EmployeeSkill() {
 	
 }
-public EmployeeSkill(int eSId, int employeeId, int skillId, int expYear) {
+public EmployeeSkill(int employeeId, int skillId, int expYear) {
 	super();
-	ESId = eSId;
 	EmployeeId = employeeId;
 	SkillId = skillId;
 	ExpYear = expYear;
@@ -41,8 +40,8 @@ public void setExpYear(int expYear) {
 }
 @Override
 public String toString() {
-	return "EmployeeSkill [ESId=" + ESId + ", EmployeeId=" + EmployeeId + ", SkillId=" + SkillId + ", ExpYear="
-			+ ExpYear + "]";
+	return "EmployeeSkill [EmployeeId=" + EmployeeId + ", SkillId=" + SkillId + ", ExpYear=" + ExpYear + "]";
 }
+
 
 }

@@ -1,83 +1,84 @@
 package model;
 
 public class Employee {
-	private int EmployeeId ;
-	private String FirstName; 
-	private String LastName ;
-	private int UserId; 
-	private String Password; 
-	private String Gender ;
-	private String   Role;
-	private String Active;
-public Employee() {
+
+	private int empId;
+	private  String firstName;
+	private String lastName;
+	private String userId;
+	private String password;
+	private String role;
+	private String gender;
+	private String active;
+	//default constructor methods
+	public Employee() {
+		
+	}
+	//parameterized constructor method
+	public Employee(String firstName, String lastName, String userId, String password, String role, String gender) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userId = userId;
+		this.password = password;
+		this.role = role;
+		this.gender = gender;
+	}
+	//All setter and getter methods
+	public int getEmpId() {
+		return empId;
+	}
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getActive() {
+		return active;
+	}
+	public void setActive(String active) {
+		this.active = active;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", firstName=" + firstName + ", lastName=" + lastName + ", userId=" + userId
+				+ ", password=" + password + ", role=" + role + ", gender=" + gender + ", active=" + active + "]";
+	}
 	
-}
-public Employee(int employeeId, String firstName, String lastName, int userId, String password, String gender,
-		String role, String active) {
-	super();
-	EmployeeId = employeeId;
-	FirstName = firstName;
-	LastName = lastName;
-	UserId = userId;
-	Password = password;
-	Gender = gender;
-	Role = role;
-	Active = active;
-}
-public int getEmployeeId() {
-	return EmployeeId;
-}
-public void setEmployeeId(int employeeId) {
-	EmployeeId = employeeId;
-}
-public String getFirstName() {
-	return FirstName;
-}
-public void setFirstName(String firstName) {
-	FirstName = firstName;
-}
-public String getLastName() {
-	return LastName;
-}
-public void setLastName(String lastName) {
-	LastName = lastName;
-}
-public int getUserId() {
-	return UserId;
-}
-public void setUserId(int userId) {
-	UserId = userId;
-}
-public String getPassword() {
-	return Password;
-}
-public void setPassword(String password) {
-	Password = password;
-}
-public String getGender() {
-	return Gender;
-}
-public void setGender(String gender) {
-	Gender = gender;
-}
-public String getRole() {
-	return Role;
-}
-public void setRole(String role) {
-	Role = role;
-}
-public String getActive() {
-	return Active;
-}
-public void setActive(String active) {
-	Active = active;
-}
-@Override
-public String toString() {
-	return "Employee [EmployeeId=" + EmployeeId + ", FirstName=" + FirstName + ", LastName=" + LastName + ", UserId="
-			+ UserId + ", Password=" + Password + ", Gender=" + Gender + ", Role=" + Role + ", Active=" + Active + "]";
-}
-
-
+	
 }
 

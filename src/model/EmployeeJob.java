@@ -10,9 +10,8 @@ public class EmployeeJob {
 		
 	}
 
-	public EmployeeJob(int eJId, int employeeId, int jobId, String recruited) {
+	public EmployeeJob(int employeeId, int jobId, String recruited) {
 		super();
-		EJId = eJId;
 		EmployeeId = employeeId;
 		JobId = jobId;
 		Recruited = recruited;
@@ -52,8 +51,8 @@ public class EmployeeJob {
 
 	@Override
 	public String toString() {
-		return "EmployeeJob [EJId=" + EJId + ", EmployeeId=" + EmployeeId + ", JobId=" + JobId + ", Recruited="
-				+ Recruited + "]";
+		return "EmployeeJob [EmployeeId=" + EmployeeId + ", JobId=" + JobId + ", Recruited=" + Recruited + "]";
 	}
 
+	
 }
