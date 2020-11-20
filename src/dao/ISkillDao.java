@@ -1,8 +1,9 @@
 package dao;
 import model.Skill;
+import java.util.List;
 public interface ISkillDao {
 
-	 void getAllSkill();
+	 List<Skill> getAllSkill();
 	 void addSkill(Skill Skill);
 	 Skill getSkillById(int id);
 	 void updateSkill(Skill skill);

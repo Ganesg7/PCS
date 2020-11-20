@@ -1,10 +1,13 @@
 package dao;
 import model.Employee;
 
+import java.util.List;
+
+
 
 public interface IEmployeeDao {
 
-	void getAllEmployees();
+	List<Employee> getAllEmployee();
 	void addEmployee(Employee emp);
 	Employee getEmployeeById(int id);
 	void updateEmployee(Employee emp);

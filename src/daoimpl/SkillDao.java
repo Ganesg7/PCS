@@ -1,6 +1,8 @@
 package daoimpl;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import config.JDBCConnection;
 import dao.ISkillDao;
@@ -12,7 +14,8 @@ public class SkillDao implements ISkillDao{
 		conn = JDBCConnection.getDBConnection();
 	}
 	@Override
-	public void getAllSkill() {
+	public List<Skill> getAllSkill() {
+		List<Skill> allSkillList=new ArrayList<Skill>();
 		try {
 			Statement stmt=conn.createStatement();
 			ResultSet rst=stmt.executeQuery("select * from skill");
@@ -30,6 +33,7 @@ public class SkillDao implements ISkillDao{
 		catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 		}
+		return allSkillList;
 		
 		
 	}

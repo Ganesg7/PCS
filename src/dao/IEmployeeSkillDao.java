@@ -1,8 +1,9 @@
 package dao;
 import model.EmployeeSkill;
+import java.util.List;
 public interface IEmployeeSkillDao {
  
-	void getAllEmployeeSkill();
+	List<EmployeeSkill> getAllEmployeeSkill();
 	void addEmployeeSkill(EmployeeSkill Empskill);
 	EmployeeSkill getEmployeeSkillById(int id);
 	void updateEmployeeSkill(EmployeeSkill Empskill);
