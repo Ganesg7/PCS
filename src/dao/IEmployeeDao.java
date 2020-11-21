@@ -11,6 +11,6 @@ public interface IEmployeeDao {
 	void addEmployee(Employee emp);
 	Employee getEmployeeById(int id);
 	void updateEmployee(Employee emp);
-	void deactivateEmployee(int id);
+	void deactivateEmployee(Employee Emp);
 	void deleteEmployee(int id);
 }

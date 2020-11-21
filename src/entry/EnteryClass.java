@@ -1,6 +1,8 @@
 package entry;
 
 import java.sql.*;
+import java.util.Scanner;
+
 import config.JDBCConnection;
 import controller.EmployeeController;
 
@@ -16,14 +18,54 @@ public class EnteryClass {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException{
 		EmployeeController empController=new EmployeeController();
-		System.out.println("Enter Employee Detail: ");
-		empController.addEmployee();
-		System.out.println("Following are all Employees Details: ");
-		empController.getAllEmployee();
+		Scanner sc =new Scanner(System.in);
+		int option;
+		char ch='y';
+		while (ch=='y' || ch=='Y') {
+			System.out.println("CRUD operation Menu:");
+			System.out.println("1. View all employees records");
+			System.out.println("2. view single employee record");
+			System.out.println("3. add an employee");
+			System.out.println("4. update an employee record");
+			System.out.println("5. deactivate an employee record");
+			System.out.println("6. delete an employee record");
+			System.out.println("7. Exit");
+			System.out.println("Enter your choice");
 			
-	}
+			option=sc.nextInt();
+			switch (option) {
+			case 1:
+				System.out.println("Following are all Employees Details: ");
+				empController.getAllEmployee();
+				break;
+			case 2:
+				empController.getEmployeeById();
+				break;
+			case 3:
+				System.out.println("Enter Employee Detail: ");
+				empController.addEmployee();
+				break;
+			case 4:
+				empController.updateEmployee();
+				break;
+			case 5:
+				empController.deactiveEmployee();
+				break;
+			case 6:
+	            empController.deleteEmployee();
+				break;
+			case 7:
+	             System.exit(0);
+				break;
+
+			default:
+				System.out.println("wrong input!!");
+			}
+			System.out.println("Do you want to continue? (y/n)");
+			ch=sc.next().charAt(0);
+		}
 }
 
-
+}
 
 
