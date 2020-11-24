@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 
@@ -19,8 +19,15 @@ public class Registrationframe extends JFrame{
 		Address=new JLabel("Address");
 		bSubmit=new JButton("Submit");
 		bReSet=new JButton("RESET");
-		
-		
+		bSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		setLayoutManager();
 		setLocationAndSize();
 		this.setTitle("Registration Form");

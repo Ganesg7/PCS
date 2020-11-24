@@ -181,10 +181,17 @@ public class EnteryClass {
 			
 	}
 
+		default:
+			System.out.println("Invalied Choice..!!!");
+		
+		}
+	
+	
+		}
 
+	
 	}
-}
-}
+
 
 
 
