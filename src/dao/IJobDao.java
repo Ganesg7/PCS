@@ -7,7 +7,9 @@ public interface IJobDao {
 	void addJob(Job job);
 	Job getJobById(int id);
 	void updateJob(Job job);
-	void deactivatehJob(int id);
+	void deactivateJob(Job job);
 	void deleteJob(int id);
+	
+
 }
 

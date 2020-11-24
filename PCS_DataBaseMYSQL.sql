@@ -44,5 +44,8 @@ create table Employee( EmployeeId int auto_increment 	primary key not null,
     select * From Empjob;
 
 select * From Employee;
-Delete from Employee where Active='active';
+Delete from Employee where Active='deactive';
 insert into Employee values(1,'ganesh','Pandi',100,'GAnesh','HRA','Male','Active');
+
+
+

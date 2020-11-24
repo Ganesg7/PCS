@@ -7,7 +7,7 @@ public interface ISkillDao {
 	 void addSkill(Skill Skill);
 	 Skill getSkillById(int id);
 	 void updateSkill(Skill skill);
-	 void deactivateSkill(int id);
+	 void deactivateSkill(Skill skill);
 	 void deleteSkill(int id);
 }
 
