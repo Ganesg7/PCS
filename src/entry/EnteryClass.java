@@ -54,7 +54,7 @@ public class EnteryClass {
 				empController.getAllEmployee();
 				break;
 			case 2:
-				empController.getEmployeeById();
+				empController.getEmployeeById(null);
 				break;
 			case 3:
 				System.out.println("Enter Employee Detail: ");
@@ -64,7 +64,7 @@ public class EnteryClass {
 				empController.updateEmployee();
 				break;
 			case 5:
-				empController.deactiveEmployee();
+				empController.deactiveEmployee(option);
 				break;
 			case 6:
 	            empController.deleteEmployee();
@@ -158,13 +158,13 @@ public class EnteryClass {
 					break;
 				case 3:
 					System.out.println("Enter Skill Detail: ");
-					skillController.addSkill();
+					skillController.addSkill(null, null);
 					break;
 				case 4:
 					skillController.updateSkill();
 					break;
 				case 5:
-					skillController.deactivateSkill();
+					skillController.deactivateSkill(option);
 					break;
 				case 6:
 		            skillController.deleteSkill();
@@ -183,6 +183,7 @@ public class EnteryClass {
 
 		default:
 			System.out.println("Invalied Choice..!!!");
+			break;
 		
 		}
 	

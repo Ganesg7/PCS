@@ -9,6 +9,7 @@ public interface ISkillDao {
 	 void updateSkill(Skill skill);
 	 void deactivateSkill(Skill skill);
 	 void deleteSkill(int id);
+	void activateSkill(Skill skill);
 }
 
 

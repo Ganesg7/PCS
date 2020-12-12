@@ -15,6 +15,10 @@ public class EmployeeController {
 		
 	empDao=new EmpDao();
 	}
+	public Employee checkLogin(String userId, String password) {
+		Employee emp=empDao.checkLogin(userId, password);
+		return emp;
+	}
 			
 			public void addEmployee() {
 		Employee emp=new Employee();
@@ -33,7 +37,7 @@ public class EmployeeController {
             System.out.println("Enter Role:");
 			String role=reader.readLine();
 			emp.setRole(role);
-			if(role.equals("HRA")) {
+			if(role.equals("HRA") || role.equals("PME") || role.equals("EMP") ) {
 				emp.setActive("Active");
 			}
 			else {
@@ -48,25 +52,21 @@ public class EmployeeController {
 	}
 
 	
-public void getAllEmployee() {
-	List<Employee> allEmpList=empDao.getAllEmployee();
-    for(Employee emp:allEmpList) {
-     System.out.println(emp);
-}
+	public List<Employee> getAllEmployee() {
+				List<Employee> allEmpList=empDao.getAllEmployee();
+			   
+				return allEmpList;
+			}
     
-}
-public void getEmployeeById() {
-	try {
-	BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
+
+public Employee getEmployeeById(String EmpId) {
+	
 	int id;
-	System.out.println("Enter EmployeeId whose record you want to access: ");
-	id=Integer.parseInt(reader.readLine());
+	
+	id=Integer.parseInt(EmpId);
 	Employee emp=empDao.getEmployeeById(id);
-	System.out.println(emp);
-	}
-	catch (IOException ex) {
-		System.out.println(ex.getMessage());
-	}
+
+	return emp;
 }
 public void updateEmployee() {
 	try {
@@ -92,19 +92,20 @@ public void updateEmployee() {
 		System.out.println(ex.getMessage());
 	}
 }
-public void deactiveEmployee() {
-	try {
-		BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-		int id;
-		System.out.println("Enter EmployeeId whose record you want to deactivate:");
-		id=Integer.parseInt(reader.readLine());
-		Employee emp=empDao.getEmployeeById(id);
-		empDao.deactivateEmployee(emp);
-	}
-	catch(IOException ex) {
-		System.out.println(ex.getMessage());
-	}
+public void deactiveEmployee(int empId) {
+	int id;
+	id=empId;
+	Employee emp=empDao.getEmployeeById(id);
+	empDao.deactivateEmployee(emp);
 }
+
+public void activeEmployee(int empId) {
+	int id;
+	id=empId;
+	Employee emp=empDao.getEmployeeById(id);
+	empDao.activateEmployee(emp);
+}
+
 public void deleteEmployee() {
 	try {
 		BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));

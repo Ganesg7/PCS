@@ -6,6 +6,7 @@ import java.util.List;
 
 import config.JDBCConnection;
 import dao.ISkillDao;
+import model.Employee;
 import model.Skill;
 
 public class SkillDao implements ISkillDao{
@@ -20,14 +21,17 @@ public class SkillDao implements ISkillDao{
 			Statement stmt=conn.createStatement();
 			ResultSet rst=stmt.executeQuery("select * from skill");
 			if(rst!=null) {
-				Skill skill= new Skill();
+				Skill skill= null;
 				while(rst.next()) {
+				    skill= new Skill();
 					skill.setSkillId(rst.getInt(1));
 					skill.setSkillName(rst.getString(2));
 					skill.setSkillDescription(rst.getString(3));
 					skill.setActive(rst.getString(4));
-					System.out.println(skill);
+					allSkillList.add(skill);
+					
 				}
+				
 			}
 		}
 		catch (SQLException ex) {
@@ -40,7 +44,7 @@ public class SkillDao implements ISkillDao{
 	@Override
 	public void addSkill(Skill skill) {
 		try {
-			PreparedStatement pst=conn.prepareStatement("insert into Skill values(?,?,?)");
+			PreparedStatement pst=conn.prepareStatement("insert into Skill(SkillName,SkillDescription,Active) values(?,?,?)");
 			pst.setString(1, skill.getSkillName());
 			pst.setString(2, skill.getSkillDescription());
 			pst.setString(3, skill.getActive());
@@ -59,23 +63,80 @@ public class SkillDao implements ISkillDao{
 	}
 	@Override
 	public Skill getSkillById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Skill skill=new Skill();
+		try{
+			PreparedStatement pst=conn.prepareStatement("select * from Skill where SkillId=?");
+			pst.setInt(1, id);
+			ResultSet rst=pst.executeQuery();
+			if(rst!=null) {
+				if(rst.next()) {
+					skill.setSkillId(rst.getInt(1));
+					skill.setSkillName(rst.getString(2));
+					skill.setSkillDescription(rst.getString(3));
+					skill.setActive(rst.getString(8));
+				}
+			}
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		return skill;
 	}
 	@Override
 	public void updateSkill(Skill skill) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void deactivateSkill(int id) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public void deleteSkill(int id) {
-		// TODO Auto-generated method stub
+		try{
+			PreparedStatement pst=conn.prepareStatement("delete from Skill where SkillId=?");
+		
+		pst.setInt(1, id);
+		int i=pst.executeUpdate();
+		if(i==1) {
+			System.out.println("Skill Deleted....");
+		}
+		else {
+		    System.out.println("Deletion Failed...");	
+		}
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+	@Override
+public void deactivateSkill(Skill skill) {
+		
+		try {
+		PreparedStatement pst=conn.prepareStatement("Update Skill set Active=? where SkillId=?");
+	    pst.setString(1, "Deactive");
+	    pst.setInt(2, skill.getSkillId());
+	    int i=pst.executeUpdate();
+	  
+	    
+	}
+	catch(SQLException ex) {
+		System.out.println(ex.getMessage());
+	}
+	}
+	@Override
+	public void activateSkill(Skill skill) {
+		try {
+		PreparedStatement pst=conn.prepareStatement("Update Skill set Active=? where SkillId=?");
+	    pst.setString(1, "Active");
+	    pst.setInt(2, skill.getSkillId());
+	    int i=pst.executeUpdate();
+	    
+	    
+	}
+	catch(SQLException ex) {
+		System.out.println(ex.getMessage());
+	}
 		
 	}
+	
 	
 }

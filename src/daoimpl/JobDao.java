@@ -5,6 +5,7 @@ import java.util.List;
 
 import config.JDBCConnection;
 import dao.IJobDao;
+import model.Employee;
 import model.Job;
 
 
@@ -71,24 +72,86 @@ public void addJob(Job job) {
 
 @Override
 public Job getJobById(int id) {
-	// TODO Auto-generated method stub
-	return null;
+	Job job=new Job();
+	try{
+		PreparedStatement pst=conn.prepareStatement("select * from Job where JobId=?");
+		pst.setInt(1, id);
+		ResultSet rst=pst.executeQuery();
+		if(rst!=null) {
+			if(rst.next()) {
+				job.setJobId(rst.getInt(1));
+				job.setJobTitle(rst.getString(2));
+				job.setJobDescription(rst.getString(3));
+				job.setCompanyName(rst.getString(4));
+				job.setLocation(rst.getString(5));
+				job.setKeySkill(rst.getString(6));
+				job.setSalary(rst.getInt(7));
+				job.setActive(rst.getString(8));
+			}
+		}
+	}
+	catch(SQLException ex) {
+		System.out.println(ex.getMessage());
+	}
+	
+	return job;
 }
 @Override
 public void updateJob(Job job) {
-	// TODO Auto-generated method stub
-	
+
+
+
 }
-@Override
-public void deactivatehJob(int id) {
-	// TODO Auto-generated method stub
-	
-}
+
 @Override
 public void deleteJob(int id) {
-	// TODO Auto-generated method stub
+	try{
+		PreparedStatement pst=conn.prepareStatement("delete from Job where JobId=?");
 	
+	pst.setInt(1, id);
+	int i=pst.executeUpdate();
+	if(i==1) {
+		System.out.println("Job Deleted....");
+	}
+	else {
+	    System.out.println("Deletion Failed...");	
+	}
+	}
+	catch(SQLException ex) {
+		System.out.println(ex.getMessage());
+	}
 }
+@Override
+public void deactivateJob(Job job) {
+	try {
+		PreparedStatement pst=conn.prepareStatement("Update Job set Active=? where JobId=?");
+	    pst.setString(1, "Deactive");
+	    pst.setInt(2, job.getJobId());
+	    int i=pst.executeUpdate();
+	    
+	    
+	}
+	catch(SQLException ex) {
+		System.out.println(ex.getMessage());
+	}
+		
+	}
+@Override
+public void activateJob(Job job) {
+	try {
+		PreparedStatement pst=conn.prepareStatement("Update Job set Active=? where JobId=?");
+	    pst.setString(1, "Active");
+	    pst.setInt(2, job.getJobId());
+	    int i=pst.executeUpdate();
+	    
+	    
+	}
+	catch(SQLException ex) {
+		System.out.println(ex.getMessage());
+	}
+		
+	}
+	
 }
 
 	

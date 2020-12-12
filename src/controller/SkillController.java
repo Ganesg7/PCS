@@ -14,40 +14,29 @@ public class SkillController {
 		skillDao=new SkillDao();
 	}
 	
-	public Skill addSkill()  
+	public Skill addSkill(String skillName2, String skillDec)  
 	{
 		Skill skill=new Skill();
-		try {
-		BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter Skill Description:");
-		skill.setSkillDescription(reader.readLine());
-		System.out.println("Enter Skill Name:");
-		String skillName=reader.readLine();
-		skill.setSkillName(skillName);
-		if(skillName.equals("coding")) {
+		
+		skill.setSkillDescription(skillDec);
+		
+
+		skill.setSkillName(skillName2);
+		if(skillName2.equals("Java Coding") || skillName2.equals("SQL Query") || skillName2.equals("HTML Coding") || skillName2.equals("CSS Coding") || skillName2.equals("JavaScript Coding")) {
 			skill.setActive("Active");
 		}
 		else {
 			skill.setActive("Deactive");
 		}
 		skillDao.addSkill(skill);
-		
-	}
-		catch(IOException ex)
-		{
-			System.out.println(ex.getMessage());
-		}
 		return skill;
 		
 }
 
-	public void getAllSkill()
+	public List<Skill> getAllSkill()
 	{
 		List<Skill> allSkillList=skillDao.getAllSkill();
-		for(Skill skill:allSkillList)
-		{
-			System.out.println(skill);
-		}
+		return allSkillList;
 		
 	}
 	public void getSkillById()
@@ -77,18 +66,10 @@ public class SkillController {
 			System.out.println(ex.getMessage());
 		}
 	}
-	public void deactivateSkill() {
-		try {
-			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-			int id;
-			System.out.println("Enter the Skill ID which Skill record you want to deactivate:");
-			id=Integer.parseInt(reader.readLine());
-			Skill skill=skillDao.getSkillById(id);
-			skillDao.deactivateSkill(skill);
-		}
-		catch(IOException ex) {
-			System.out.println(ex.getMessage());
-		}
+	public void deactivateSkill(int skillId) {
+
+		Skill skill=skillDao.getSkillById(skillId);
+		skillDao.deactivateSkill(skill);
 	}
 	public void deleteSkill() {
 		try {
@@ -101,5 +82,12 @@ public class SkillController {
 		catch(IOException ex) {
 			System.out.println(ex.getMessage());
 		}
+	}
+
+	public void activeSkill(int skillId) {
+		
+
+		Skill skill=skillDao.getSkillById(skillId);
+		skillDao.activateSkill(skill);
 	}
 }

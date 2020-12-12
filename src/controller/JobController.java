@@ -13,44 +13,31 @@ public class JobController {
   jobDao=new JobDao();
   }
   
-	public Job addJob() {
+	public Job addJob(String jobTitel, String jobDec, String cmName, String location, String keySkill, int salary) {
 		Job job=new Job();
-		try {
-			BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-			
-			System.out.println("Enter Job Description");
-			job.setJobDescription(reader.readLine());
-			System.out.println("Enter Company Name");
-			job.setCompanyName(reader.readLine());
-			System.out.println("Enter Location");
-			job.setLocation(reader.readLine());
-			System.out.println("Enter Key Skill");
-			job.setKeySkill(reader.readLine());
-			System.out.println("Enter Salary");
-			job.setSalary(Integer.parseInt(reader.readLine()));
-			System.out.println("Enter Job Titel");
-			String jobTitle=reader.readLine();
-			job.setJobTitle(jobTitle);
-			if(jobTitle.equals("HR")) {
+		job.setJobTitle(jobTitel);
+		    job.setJobDescription(jobDec);
+			job.setCompanyName(cmName);
+			job.setLocation(location);
+			job.setKeySkill(keySkill);
+			job.setSalary(salary);
+		
+			if(jobTitel.equals("HR") || jobTitel.equals("Web-Devloper") || jobTitel.equals("java Devloper") || jobTitel.equals("Angular Devloper") ) {
 				job.setActive("Active");
 			}
 			else {
 				job.setActive("Deactive");
 			}
 			jobDao.addJob(job);
+			return job;
 		}
-		
-		catch(IOException ex) {
-			System.out.println(ex.getMessage());
-		}
+
 	
-	}
+	
 			
-	public void getAllJob() {
+	public List<Job> getAllJob() {
 		List<Job> allJobList=jobDao.getAllJob();
-		for(Job job:allJobList) {
-			System.out.println(job);
-		}
+	return allJobList;
 	}
 public void getJobById() {
 	try {
@@ -78,18 +65,9 @@ public void updateJob() {
 		System.out.println(ex.getMessage());
 	}
 }
-public void deactivateJob() {
-	try {
-		BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-		int id;
-		System.out.println("Enter the Job Id which record you want to deactivate:");
-		id=Integer.parseInt(reader.readLine());
-		Job job=jobDao.getJobById(id);
-		jobDao.deactivateJob(job);
-	}
-	catch(IOException ex) {
-		System.out.println(ex.getMessage());
-	}
+public void deactivateJob(int jobId) {
+	Job job=jobDao.getJobById(jobId);
+	jobDao.deactivateJob(job);
 }
 public void deleteJob() {
 	try {
@@ -102,5 +80,12 @@ public void deleteJob() {
 	catch(IOException ex) {
 		System.out.println(ex.getMessage());
 	}
+}
+
+public void activeJob(int jobId) {
+	
+	Job job=jobDao.getJobById(jobId);
+	jobDao.activateJob(job);
+	
 }
 }
