@@ -23,7 +23,7 @@ JButton b1;
 JLabel l1;
 public FrameTest()
 {
-setTitle("NIIT Portal");
+setTitle("Personal Consultation Services");
 setSize(400,400);
 setLocationRelativeTo(null);
 setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,7 +33,7 @@ setVisible(true);
 setLayout(new BorderLayout());
 JLabel background=new JLabel(new ImageIcon
 
-("F:\\javaworkspace\\NIIT.jpg"));
+("F:\\javaworkspace\\PCS\\PCSAutomation.JPG"));
 add(background);
 background.setLayout(new FlowLayout());
 l1=new JLabel(" For Login (or) Registration");
