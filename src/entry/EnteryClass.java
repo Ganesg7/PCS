@@ -107,13 +107,13 @@ public class EnteryClass {
 					break;
 				case 3:
 					System.out.println("Enter JOB Detail: ");
-					jobController.addJob();
+					jobController.addJob(null, null, null, null, null, option);
 					break;
 				case 4:
 					jobController.updateJob();
 					break;
 				case 5:
-					jobController.deactivateJob();
+					jobController.deactivateJob(option);
 					break;
 				case 6:
 		            jobController.deleteJob();
