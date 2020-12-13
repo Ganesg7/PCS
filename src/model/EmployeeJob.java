@@ -54,5 +54,6 @@ public class EmployeeJob {
 		return "EmployeeJob [EmployeeId=" + EmployeeId + ", JobId=" + JobId + ", Recruited=" + Recruited + "]";
 	}
 
+
 	
 }

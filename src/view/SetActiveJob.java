@@ -62,7 +62,7 @@ public class SetActiveJob extends JFrame {
 		setLayoutManager();
 		setLocationAndSize();
 		addComponentsToContainer();
-		this.setTitle("HRA Window Screen");
+		this.setTitle("Pm Window Screen");
 		this.setVisible(true);
 		this.setBounds(10,10,500,400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

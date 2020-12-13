@@ -3,17 +3,23 @@ package controller;
 
 import java.io.*;
 import model.Employee;
+import model.EmployeeJob;
 import dao.IEmployeeDao;
+import dao.IEmployeeJobDao;
 import daoimpl.EmpDao;
+import daoimpl.EmployeeJobDao;
+
 import java.sql.*;
 import java.util.List;
 
 public class EmployeeController {
 
+	IEmployeeJobDao empjobdao= null;
 	IEmployeeDao empDao=null;
 	public EmployeeController() throws ClassNotFoundException, SQLException{
 		
 	empDao=new EmpDao();
+	empjobdao=new EmployeeJobDao();
 	}
 	public Employee checkLogin(String userId, String password) {
 		Employee emp=empDao.checkLogin(userId, password);
@@ -68,29 +74,14 @@ public Employee getEmployeeById(String EmpId) {
 
 	return emp;
 }
-public void updateEmployee() {
-	try {
-		BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
-		int id;
-		String password, confirmpassword;
-		System.out.println("Enter EmployeeId whose record you want to update:");
-		id=Integer.parseInt(reader.readLine());
-		Employee emp=empDao.getEmployeeById(id);
-		System.out.println("Enter your new password:");
-		password=reader.readLine();
-		System.out.println("Re-enter same password to confirm:");
-		confirmpassword=reader.readLine();
-		if(password.equals(confirmpassword)) {
-			emp.setPassword(password);
-			empDao.updateEmployee(emp);
-		}
-		else {
-			System.out.println("Sorry! you have entered different password!");
-		}
-	}
-	catch(IOException ex) {
-		System.out.println(ex.getMessage());
-	}
+public Employee updateEmployee(String newpassword , int empid) {
+		Employee emp=new Employee();
+	
+	
+		emp.setPassword(newpassword);
+		emp.setEmpId(empid);
+		empDao.updateEmployee(emp);
+		return emp;
 }
 public void deactiveEmployee(int empId) {
 	int id;
@@ -117,6 +108,21 @@ public void deleteEmployee() {
 	catch(IOException ex) {
 		System.out.println(ex.getMessage());
 	}
+}
+
+
+public  void addEmployeeJob(int empId, int jobId, String recruited) {
+EmployeeJob Empjob=new EmployeeJob();
+	
+	Empjob.setEmployeeId(empId);
+	Empjob.setJobId(jobId);
+    Empjob.setRecruited(recruited);
+	empjobdao.addEmployeeJob(Empjob);
+}
+public List<EmployeeJob> getAllEmployeeJob() {
+	List<EmployeeJob> allEmpJobList=empjobdao.getAllEmployeeJob();
+	   
+	return allEmpJobList;
 }
 
 }

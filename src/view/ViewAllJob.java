@@ -45,7 +45,7 @@ public class ViewAllJob extends JFrame{
 			 
 			this.add(new JScrollPane(table));
 			table=new JTable();
-			this.setTitle("All Employee Details");
+			this.setTitle("All Job Details");
 			this.setBounds(10,10,900,250);
 			this.setVisible(true);
 			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -15,19 +15,24 @@ import javax.swing.JPanel;
 public class PmWindow extends JFrame {
 	Container container=null;
 	JLabel lTitle;
-	JButton bViewSkillEmployee,bAllAvaliableSkill,bAddJob,bViewAllJob,bViewSkillJob,bEmployeeListAppliedjob,bDeactivatejob,bSearch,bLogout;
+	JButton bAddEmployee,bAllAvaliableSkill,bAddJob,bViewAllJob,bEmployeeListAppliedjob,bDeactivatejob,bSearch,bLogout;
 	JPanel Pm;
 	public PmWindow() {
 		container=getContentPane();
 		lTitle=new JLabel("Project Manager Window");
 		Pm=new JPanel();
 		Pm.add(lTitle);
-		bViewSkillEmployee=new JButton ("View Skill Wise Employee List");
-        bViewSkillEmployee.addActionListener(new ActionListener() {
+		bAddEmployee=new JButton ("Add Employee");
+        bAddEmployee.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					new AddEmployee();
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
         
@@ -36,7 +41,7 @@ public class PmWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				new ViewAllSkill();
 				
 			}
 		});
@@ -67,21 +72,14 @@ public class PmWindow extends JFrame {
 			}
 		});
         
-        bViewSkillJob=new JButton ("View Skill Wise Jobs");
-        bViewSkillJob.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
+        
         
         bEmployeeListAppliedjob=new JButton ("View Employee List Who Applied For Job");
         bEmployeeListAppliedjob.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new EmployeeApplyJob();
 				
 				
 			}
@@ -131,7 +129,7 @@ public class PmWindow extends JFrame {
 		addComponentsToContainer();
         this.setTitle("PM Window Screen");
 	    this.setVisible(true);
-	    this.setBounds(10,10,500,600);
+	    this.setBounds(10,10,500,500);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setResizable(false);
 
@@ -144,21 +142,20 @@ public class PmWindow extends JFrame {
 		Pm.setBackground(Color.BLUE);
 		lTitle.setFont(new Font("Verdana", Font.BOLD, 18));
 		lTitle.setForeground(Color.white);
-		bViewSkillEmployee.setBounds(100, 130, 300, 30);
+		bAddEmployee.setBounds(100, 130, 300, 30);
 		bAllAvaliableSkill.setBounds(100, 170, 300, 30);
 		bAddJob.setBounds(100, 210, 300, 30);
 		bViewAllJob.setBounds(100, 250, 300, 30);
-		bViewSkillJob.setBounds(100, 290, 300, 30);
-		bEmployeeListAppliedjob.setBounds(100, 330, 300, 30);
-		bDeactivatejob.setBounds(100, 370, 300, 30);
-		bSearch.setBounds(100, 410, 300, 30);
-		bLogout.setBounds(100, 450, 300, 30);
 		
-		bViewSkillEmployee.setBackground(Color.ORANGE);
+		bEmployeeListAppliedjob.setBounds(100, 290, 300, 30);
+		bDeactivatejob.setBounds(100, 330, 300, 30);
+		bSearch.setBounds(100, 370, 300, 30);
+		bLogout.setBounds(100, 410, 300, 30);
+		
+		bAddEmployee.setBackground(Color.ORANGE);
 		bAllAvaliableSkill.setBackground(Color.ORANGE);
 		bAddJob.setBackground(Color.ORANGE);
 		bViewAllJob.setBackground(Color.ORANGE);
-		bViewSkillJob.setBackground(Color.ORANGE);
 		bEmployeeListAppliedjob.setBackground(Color.ORANGE);
 		bDeactivatejob.setBackground(Color.ORANGE);
 		bSearch.setBackground(Color.ORANGE);
@@ -167,11 +164,10 @@ public class PmWindow extends JFrame {
 	}
 	public void addComponentsToContainer() {
 		container.add(Pm);
-		container.add(bViewSkillEmployee);
+		container.add(bAddEmployee);
 		container.add(bAllAvaliableSkill);
 		container.add(bAddJob);
 		container.add(bViewAllJob);
-		container.add(bViewSkillJob);
 		container.add(bEmployeeListAppliedjob);
 		container.add(bDeactivatejob);
 		container.add(bSearch);

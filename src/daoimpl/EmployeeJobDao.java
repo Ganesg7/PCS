@@ -9,7 +9,7 @@ import model.EmployeeJob;
 
 
 public class EmployeeJobDao implements IEmployeeJobDao {
-	Connection conn=null;
+	static Connection conn=null;
 	public EmployeeJobDao() throws ClassNotFoundException,SQLException{
 		conn=JDBCConnection.getDBConnection();
 	}
@@ -38,16 +38,14 @@ public class EmployeeJobDao implements IEmployeeJobDao {
 	}
 		return allEmpJobList;
 	}
-	
-	@Override
 	public void addEmployeeJob(EmployeeJob Empjob) {
 		try {
 		
-			PreparedStatement pst=conn.prepareStatement("Insert into EmpJob(EJID,EmployeeId,JobId,Recruited) values(?,?,?,?)");
-		    pst.setInt(1, Empjob.getEJId());
-		    pst.setInt(2, Empjob.getEmployeeId());
-		    pst.setInt(3, Empjob.getJobId());
-		    pst.setString(4, Empjob.getRecruited());
+			PreparedStatement pst=conn.prepareStatement("Insert into EmpJob(EmployeeId,JobId,Recruited) values(?,?,?)");
+		  
+		    pst.setInt(1, Empjob.getEmployeeId());
+		    pst.setInt(2, Empjob.getJobId());
+		    pst.setString(3, Empjob.getRecruited());
 		    int i=pst.executeUpdate();
 		    if(i==1) {
 		    	System.out.println("1 record inserted....");
@@ -65,12 +63,43 @@ public class EmployeeJobDao implements IEmployeeJobDao {
 	}
 	@Override
 	public EmployeeJob getEmployeeJobById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		EmployeeJob employeejob=new EmployeeJob(); //1
+		try{
+			PreparedStatement pst=conn.prepareStatement("select * from EmpJob where EJId=?");
+			pst.setInt(1,id);
+			ResultSet rst=pst.executeQuery();
+			if(rst!=null) {
+				if(rst.next()) {
+					employeejob=new EmployeeJob();
+					employeejob.setEJId(rst.getInt(1));
+					employeejob.setEmployeeId(rst.getInt(2));
+					employeejob.setJobId(rst.getInt(3));
+					employeejob.setRecruited(rst.getString(4));
+				}
+			}
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+		return employeejob;
 	}
 	@Override
-	public void updateEmployeeJob(EmployeeJob Empjob) {
-		// TODO Auto-generated method stub
+	public void updateEmployeeJob(EmployeeJob Employeejob) {
+		try {
+			PreparedStatement pst=conn.prepareStatement("update EmpJob set Recruited=? where EJId=? ");
+			pst.setString(1, Employeejob.getRecruited());
+			pst.setInt(2, Employeejob.getEJId());
+			int i=pst.executeUpdate();
+			if(i==1){
+				System.out.println("1 record updated...");
+			}
+			else {
+				System.out.println("update failed...");
+			}
+		}
+		catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
 		
 	}
 	@Override

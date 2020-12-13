@@ -16,7 +16,7 @@ public class EmployeeWindow extends JFrame{
 	JLabel lTitle;
 	static JLabel lName;
 	JPanel p1,p2;
-	JButton bView,bUpdateProfile,bupdateSkill,bSearch,bLogout;
+	JButton bView,bUpdateProfile,badd,bSearch,bLogout;
 	public EmployeeWindow(Employee emp) {
 		container=getContentPane();
 		lTitle=new JLabel("Employee Window Screen");
@@ -28,7 +28,7 @@ public class EmployeeWindow extends JFrame{
 		p2.add(lName);
 		bView =new JButton("View Profile");
 		bUpdateProfile=new JButton("Update Profile");
-		bupdateSkill=new JButton("Update Skill");
+		badd=new JButton("Apply Job");
 		bSearch=new JButton("Search Employee");
 		bLogout=new JButton("Log Out");
 		
@@ -48,18 +48,28 @@ public class EmployeeWindow extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new UpdateProfile();
+				try {
+					new UpdateProfile(emp);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				
 			}
 		});
 		
 		
-		bupdateSkill.addActionListener(new ActionListener() {
+		badd.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+			try {
+				new ApplyJob();
+			} catch (ClassNotFoundException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	
 				
 			}
 		});
@@ -111,12 +121,12 @@ public class EmployeeWindow extends JFrame{
 		lName.setFont(new Font("Verdana", Font.ITALIC, 13));
 		bView.setBounds(170, 150, 150, 30);
 		bUpdateProfile.setBounds(170, 200, 150, 30);
-		bupdateSkill.setBounds(170, 250, 150, 30);
+		badd.setBounds(170, 250, 150, 30);
 		bSearch.setBounds(170, 300, 150, 30);
 		bLogout.setBounds(170, 350, 150, 30);
 		bView.setBackground(Color.ORANGE);
 		bUpdateProfile.setBackground(Color.ORANGE);
-		bupdateSkill.setBackground(Color.ORANGE);
+		badd.setBackground(Color.ORANGE);
 		bSearch.setBackground(Color.ORANGE);
 		bLogout.setBackground(Color.ORANGE);
 	}
@@ -125,7 +135,7 @@ public class EmployeeWindow extends JFrame{
 		container.add(p2);
 		container.add(bView);
 		container.add(bUpdateProfile);
-		container.add(bupdateSkill);
+		container.add(badd);
 		container.add(bSearch);
 		container.add(bLogout);
 		

@@ -1,34 +1,36 @@
 package test;
-
+import static org.junit.Assert.assertEquals;
 import java.sql.SQLException;
 
 import org.junit.Before;
-
+import org.junit.BeforeClass;
+import dao.IEmployeeDao;
+import daoimpl.EmpDao;
 import model.Employee;
 
 public class Test {
+	IEmployeeDao empDao=null;
 	@Before
-	public static setUpClass() {
-	
+	public void setup() {
 		try {
-		IEmployeeDao empDao=new EmployeeDao();
-	}
-		catch(SQLException ex) {
-			
+			empDao=new EmpDao();
 		}
-		cathc(ClassNotFoundException ex){
+		catch(SQLException ex) {
+		
+		}
+		catch(ClassNotFoundException ex) {
 			
 		}
 	}
 	
-		
 	@Test
 	public void testGetEmployeeById() {
-	
-	Employee empAcutal=new Employee();
-	Employee empExpected=new Employee("Ganesh","Pandi E","Ganesh7","Ganesh@7","HRA","Male");
-	empAcutal=empDao.getEmployeeById(8);
-	assertEquals(empExpected,empActual);
+		Employee empActual=new Employee();
+		Employee empExpected=new Employee (11,"Amy","Santigo","amy99","amy@99","EMP","Female","Active");
+		empActual=(Employee)empDao.getEmployeeById(2);
+		
+		assertEquals(empExpected.getFirstName(),empActual.getFirstName(),empActual.getUserId(),empActual.getPassword(),empActual.getRole(),empActual.getActive());
+		
 	}
 
 }
