@@ -151,6 +151,12 @@ public void activateJob(Job job) {
 	}
 		
 	}
+@Override
+public void deactivateJob(Job job, String string) {
+	// TODO Auto-generated method stub
+	
+}
+
 	
 }
 

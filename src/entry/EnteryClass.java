@@ -61,7 +61,7 @@ public class EnteryClass {
 				empController.addEmployee();
 				break;
 			case 4:
-				empController.updateEmployee();
+				empController.updateEmployee(null, option);
 				break;
 			case 5:
 				empController.deactiveEmployee(option);

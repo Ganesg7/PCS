@@ -13,6 +13,18 @@ public class Job {
  public Job() {
 	 
  }
+ 
+ public Job(int jobId, String jobTitle, String jobDescription, String companyName, String location, String keySkill, int salary, String active) {
+		JobId=jobId;
+		JobTitle = jobTitle;
+		JobDescription = jobDescription;
+		CompanyName = companyName;
+		Location = location;
+		KeySkill = keySkill;
+		Salary = salary;
+		Active = active;
+	}
+ 
 public Job(String jobTitle, String jobDescription, String companyName, String location, String keySkill, int salary) {
 	super();
 	JobTitle = jobTitle;
